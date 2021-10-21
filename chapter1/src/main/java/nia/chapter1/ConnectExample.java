@@ -28,6 +28,7 @@ public class ConnectExample {
     public static void connect() {
         Channel channel = CHANNEL_FROM_SOMEWHERE; //reference form somewhere
         // Does not block
+        // 异步连接远程节点
         ChannelFuture future = channel.connect(
                 new InetSocketAddress("192.168.0.1", 25));
         future.addListener(new ChannelFutureListener() {
@@ -36,6 +37,7 @@ public class ConnectExample {
                 if (future.isSuccess()) {
                     ByteBuf buffer = Unpooled.copiedBuffer(
                             "Hello", Charset.defaultCharset());
+                    // 将数据异步发送到远程节点, 放回一个ChannelFuture
                     ChannelFuture wf = future.channel()
                             .writeAndFlush(buffer);
                     // ...
