@@ -62,4 +62,12 @@ public class ChannelOperationExamples {
         executor.execute(writer);
         //...
     }
+
+    public static void main(String[] args) {
+        writingToChannel();
+
+        // writingToChannelFromManyThreads();
+
+    }
+
 }
